@@ -1,0 +1,29 @@
+# Local, private, generated, or game-derived material.
+/_local/
+
+# Local tool installations and reverse-engineering databases.
+/ghidra_*_PUBLIC/
+*.gpr
+*.rep/
+*.gzf
+*.ce
+*.ct
+
+# Game and emulator material must never be committed.
+*.xex
+*.xexp
+*.iso
+*.zar
+xenia.log
+
+# Test captures and recordings.
+*.bmp
+*.mp4
+*.mkv
+*.webm
+
+# Backups, temporary files, and OS metadata.
+*.bak
+*.tmp
+Thumbs.db
+.DS_Store

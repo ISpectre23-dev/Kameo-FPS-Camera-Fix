@@ -33,6 +33,18 @@ Puedes inspeccionar esta ruta y acceder a sus subcarpetas para localizar:
 
 No asumas nombres o ubicaciones internas. Localízalos y documéntalos.
 
+### Instalación local de Ghidra
+
+`C:\Users\david\GitHub\KameoCameraFix\ghidra_12.0.4_PUBLIC`
+
+Esta es la instalación local de Ghidra 12.0.4 utilizada por el proyecto.
+
+- Trátala como una dependencia local, no como contenido del repositorio.
+- No la muevas, renombres, modifiques ni elimines salvo que sea imprescindible y seguro.
+- Puedes ejecutar `ghidraRun.bat` y las herramientas headless desde esta ruta.
+- Los proyectos, bases de datos, exports y scripts generados durante el análisis deben guardarse dentro de `_local\`, no dentro de la instalación de Ghidra.
+- Verifica que esta carpeta esté excluida de Git antes de continuar.
+
 ## Organización del proyecto
 
 Debes diseñar y crear una estructura clara dentro de la raíz del proyecto.
@@ -68,6 +80,7 @@ Puedes ajustar la estructura si encuentras una organización mejor, pero debes d
 
 ```gitignore
 _local/
+/ghidra_*_PUBLIC/
 *.bak
 *.tmp
 Thumbs.db
@@ -85,6 +98,7 @@ Thumbs.db
 - tablas de Cheat Engine;
 - vídeos o capturas de pruebas;
 - copias completas de Xenia;
+- instalaciones locales de Ghidra, incluida `ghidra_12.0.4_PUBLIC`;
 - archivos generados o temporales.
 
 ## Seguridad y límites
