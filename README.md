@@ -60,7 +60,7 @@ apply_patches = true
 
 Never enable the 60 FPS option at the same time.
 
-No external NVIDIA limiter is required. The system must be able to maintain
+No external limiter is required. The system must be able to maintain
 approximately 100 FPS to achieve the intended behavior.
 
 ## Aspect Ratio configuration
