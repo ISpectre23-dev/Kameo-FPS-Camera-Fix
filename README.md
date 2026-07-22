@@ -46,7 +46,7 @@ Other game revisions are not supported by this file.
 
 ### Xenia Manager
 
-In the tested version of Xenia Manager, importing this file as a local patch
+In the tested version of `Xenia Manager v4.2.2`, importing this file as a local patch
 may create an empty extensionless file. The patch entries can appear in the
 interface without being applied in-game.
 
