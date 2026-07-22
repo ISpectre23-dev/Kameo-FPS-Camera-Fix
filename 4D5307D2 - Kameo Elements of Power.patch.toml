@@ -5,8 +5,8 @@ hash = "1A83A0AF5C0EDFE8" # default.xex
 
 [[patch]]
     name = "60 FPS + Camera Fix"
-    desc = "Enable only this option; disable 100 FPS + Camera Fix. Never enable both. Use apply_patches = true, vsync = true, and framerate_limit = 60."
-    author = "ISpectre23"
+    desc = "Enables 60 FPS and fixes automatic camera following. Do not enable with 100 FPS + Camera Fix. Requires vsync = true and framerate_limit = 60."
+    author = "Margen67, ISpectre23"
     is_enabled = false
 
     [[patch.be8]]
@@ -27,8 +27,8 @@ hash = "1A83A0AF5C0EDFE8" # default.xex
 
 [[patch]]
     name = "100 FPS + Camera Fix"
-    desc = "Enable only this option; disable 60 FPS + Camera Fix. Never enable both. Use apply_patches = true, vsync = true, and framerate_limit = 100."
-    author = "ISpectre23"
+    desc = "Enables 100 FPS and fixes automatic camera following. Do not enable with 60 FPS + Camera Fix. Requires vsync = true and framerate_limit = 100."
+    author = "Margen67, ISpectre23"
     is_enabled = false
 
     [[patch.be8]]
@@ -54,3 +54,13 @@ hash = "1A83A0AF5C0EDFE8" # default.xex
     [[patch.be32]]
         address = 0x82440f7c
         value = 0xc1bafff8
+
+[[patch]]
+    name = "Aspect Ratio"
+    desc = "See note about aspect ratio patches in the README."
+    author = "Margen67"
+    is_enabled = false
+
+    [[patch.be32]]
+        address = 0x82087cac
+        value = 0x4018e38e

@@ -1,13 +1,16 @@
 # Kameo Camera Fix for Xenia Canary
 
 Fixes automatic camera following in **Kameo: Elements of Power** when the game
-runs at 60 or 100 FPS. This file contains only these two complete options, both
+runs at 60 or 100 FPS. The patch file contains these three options, all
 disabled by default:
 
 - `60 FPS + Camera Fix`
 - `100 FPS + Camera Fix`
+- `Aspect Ratio`
 
-Enable **only one**. The two options are mutually exclusive.
+Enable **only one FPS option**. The 60 and 100 FPS options are mutually
+exclusive and must never be enabled simultaneously. The official `Aspect
+Ratio` patch is independent of the FPS choice.
 
 ## Compatibility
 
@@ -22,8 +25,9 @@ Other game revisions are not supported by this file.
 
 1. Close Xenia.
 2. Back up any Kameo patch file you already have installed.
-3. Copy `4D5307D2 - Kameo.patch.toml` to the Xenia Canary `patches` folder,
-   replacing the existing Kameo patch file to avoid duplicate entries.
+3. Copy `4D5307D2 - Kameo Elements of Power.patch.toml` to the Xenia Canary
+   `patches` folder, replacing the existing Kameo patch file to avoid duplicate
+   entries.
 4. Open the patch manager and enable only one of the two framerate options with
    Camera Fix.
 5. Make sure patches are enabled in the game configuration.
@@ -59,6 +63,12 @@ Never enable the 60 FPS option at the same time.
 No external NVIDIA limiter is required. The system must be able to maintain
 approximately 100 FPS to achieve the intended behavior.
 
+## Aspect Ratio configuration
+
+The official `Aspect Ratio` patch is independent of the FPS options. It
+requires the aspect-ratio configuration specified by Xenia for aspect-ratio
+patches; follow the note in the Xenia game-patches README before enabling it.
+
 ## Uninstallation
 
 1. Close Xenia.
@@ -80,4 +90,5 @@ profiles, or game content.
 
 ## Credits
 
-Camera Fix and final package: **ISpectre23**.
+- Original FPS unlock and Aspect Ratio patch: **Margen67**
+- Camera fixes and 100 FPS implementation: **ISpectre23**
