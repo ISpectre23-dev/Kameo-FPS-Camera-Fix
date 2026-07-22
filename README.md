@@ -72,8 +72,6 @@ framerate_limit = 60
 apply_patches = true
 ```
 
-Never enable the 100 FPS option at the same time.
-
 ## 100 FPS configuration
 
 Enable only `100 FPS + Camera Fix`, disable `60 FPS + Camera Fix`, and use:
@@ -83,8 +81,6 @@ vsync = true
 framerate_limit = 100
 apply_patches = true
 ```
-
-Never enable the 60 FPS option at the same time.
 
 No external limiter is required. The system must be able to maintain
 approximately 100 FPS to achieve the intended behavior.
