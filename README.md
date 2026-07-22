@@ -25,24 +25,30 @@ Other game revisions are not supported by this file.
 
 ### Manual installation
 
-1. Close Xenia.
-2. Back up any Kameo patch file you already have installed.
-3. Copy `4D5307D2 - Kameo Elements of Power.patch.toml` to the Xenia Canary
-   `patches` folder, replacing the existing Kameo patch file to avoid duplicate
-   entries.
-4. Open the patch manager and enable only one of the two framerate options with
-   Camera Fix.
-5. Make sure patches are enabled in the game configuration.
+1. Close Xenia Canary.
+2. Back up and remove any existing Kameo patch file from Xenia Canary's
+   `patches` folder. Keep only one Kameo patch file installed to avoid duplicate
+   entries or conflicting enabled states.
+3. Copy `4D5307D2 - Kameo Elements of Power.patch.toml` to Xenia Canary's
+   `patches` folder.
+4. Open the copied `.patch.toml` file in a text editor and set
+   `is_enabled = true` for either `60 FPS + Camera Fix` or
+   `100 FPS + Camera Fix`. Keep the other FPS option set to `false`. Never
+   enable both simultaneously.
+5. In Kameo's configuration, keep `apply_patches = true` and `vsync = true`,
+   then set `framerate_limit = 60` or `framerate_limit = 100` to match the
+   enabled patch.
+6. Launch the game and confirm that `[Patches Applied]` appears in Xenia
+   Canary's title bar.
 
-> **Important:** enable only one Camera Fix option and keep the other one
-> disabled. Never enable both simultaneously. Keep `vsync = true` and
-> `apply_patches = true`, and use the matching `framerate_limit` value.
+> **Important:** only one FPS option may be enabled at a time. The
+> `Aspect Ratio` patch may be enabled independently alongside either FPS option.
 
 ### Xenia Manager
 
-Xenia Manager currently has an issue when importing this patch as a local
-patch: it may create an empty extensionless file, causing the patch entries to
-appear in the interface without being applied in-game.
+In the tested version of Xenia Manager, importing this file as a local patch
+may create an empty extensionless file. The patch entries can appear in the
+interface without being applied in-game.
 
 To install it through Xenia Manager:
 
@@ -50,8 +56,9 @@ To install it through Xenia Manager:
 2. Locate the generated `4D5307D2 - Kameo.patch.toml` file in Xenia Canary's
    `patches` folder.
 3. Replace the contents of that file with the contents of this repository's
-   patch file. Keep the filename exactly as `4D5307D2 - Kameo.patch.toml`,
-   since this is the shortened filename expected by Xenia Manager.
+   patch file. Keep the filename exactly as `4D5307D2 - Kameo.patch.toml` when
+   using Xenia Manager, as this is the filename generated and managed by it for
+   Kameo.
 4. Enable either `60 FPS + Camera Fix` or `100 FPS + Camera Fix`, but never
    enable both options at the same time.
 
@@ -90,7 +97,7 @@ patches; follow the note in the Xenia game-patches README before enabling it.
 
 ## Uninstallation
 
-1. Close Xenia.
+1. Close Xenia Canary.
 2. Disable both Camera Fix entries.
 3. Remove the installed file or restore your backup of the official Kameo
    patch file.
@@ -103,9 +110,9 @@ profiles, or game content.
 - Only the specified Module Hash is supported.
 - Each option is tuned for its specific framerate; this is not a dynamic patch
   and is not designed for uncapped operation.
-- Never enable both options at the same time.
-- Initial manual validation was stable, but uncommon cameras or situations may
-  not have been tested yet.
+- Never enable both FPS options at the same time.
+- Both options were tested in regular gameplay, but uncommon scripted camera
+  sequences or untested areas may still behave differently.
 
 ## Credits
 
