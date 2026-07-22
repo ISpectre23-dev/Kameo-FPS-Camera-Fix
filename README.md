@@ -1,4 +1,4 @@
-# Kameo Camera Fix for Xenia Canary
+# Kameo FPS Camera Fix for Xenia Canary
 
 Fixes automatic camera following in **Kameo: Elements of Power** when the game
 runs at 60 or 100 FPS. The patch file contains these three options, all
