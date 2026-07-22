@@ -1,0 +1,56 @@
+title_name = "Kameo: Elements of Power"
+title_id = "4D5307D2" # MS-2002
+hash = "1A83A0AF5C0EDFE8" # default.xex
+#media_id = "45BB5521" # Disc (Europe): redump.org/disc/8561
+
+[[patch]]
+    name = "60 FPS + Camera Fix"
+    desc = "Enable only this option; disable 100 FPS + Camera Fix. Never enable both. Use apply_patches = true, vsync = true, and framerate_limit = 60."
+    author = "ISpectre23"
+    is_enabled = false
+
+    [[patch.be8]]
+        address = 0x820cf93f
+        value = 0x01
+
+    [[patch.be32]]
+        address = 0x82440f18
+        value = 0xc0bf0084
+
+    [[patch.be32]]
+        address = 0x82440f20
+        value = 0xefbde82a
+
+    [[patch.be32]]
+        address = 0x82440f34
+        value = 0xd0b90008
+
+[[patch]]
+    name = "100 FPS + Camera Fix"
+    desc = "Enable only this option; disable 60 FPS + Camera Fix. Never enable both. Use apply_patches = true, vsync = true, and framerate_limit = 100."
+    author = "ISpectre23"
+    is_enabled = false
+
+    [[patch.be8]]
+        address = 0x820cf93f
+        value = 0x01
+
+    [[patch.be32]]
+        address = 0x82440f18
+        value = 0xc0bf0084
+
+    [[patch.be32]]
+        address = 0x82440f20
+        value = 0xc31ac1a8
+
+    [[patch.be32]]
+        address = 0x82440f34
+        value = 0xd0b90008
+
+    [[patch.be32]]
+        address = 0x82440f74
+        value = 0xefbfc024
+
+    [[patch.be32]]
+        address = 0x82440f7c
+        value = 0xc1bafff8

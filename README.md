@@ -1,54 +1,86 @@
-# KameoCameraFix
+# Kameo Camera Fix for Xenia Canary
 
-Proyecto de investigación para crear un parche de Xenia Canary que corrija el
-seguimiento automático de la cámara de **Kameo: Elements of Power** a 60 FPS.
+Corrige el seguimiento automático de la cámara de **Kameo: Elements of
+Power** cuando el juego funciona a 60 o 100 FPS. El archivo contiene
+exclusivamente estas dos opciones, completas y deshabilitadas por defecto:
 
-La fase inicial solo prepara y valida el entorno. No contiene todavía un
-candidato de parche ni resultados de ingeniería inversa.
+- `60 FPS + Camera Fix`
+- `100 FPS + Camera Fix`
 
-## Estructura
+Activa **solo una**. Las dos opciones son mutuamente excluyentes.
 
-| Ruta | Contenido |
-| --- | --- |
-| `docs/` | Informes reproducibles, hipótesis y registro de pruebas. |
-| `patches/final/` | Parche final deshabilitado por defecto, cuando esté validado. |
-| `patches/work/` | Candidatos de parche aptos para conservar en Git y sin datos privados. |
-| `scripts/` | Automatización segura y reutilizable. |
-| `_local/game-files/` | Copias de módulos del juego; nunca originales. |
-| `_local/ghidra/projects/` | Proyectos y bases de datos de Ghidra. |
-| `_local/ghidra/exports/` | Exportaciones generadas por Ghidra. |
-| `_local/cheat-engine/` | Tablas y datos de Cheat Engine. |
-| `_local/captures/` | Capturas y vídeos de pruebas. |
-| `_local/test-results/` | Resultados generados de pruebas. |
-| `_local/reports/` | Informes temporales o privados. |
-| `_local/logs/` | Copias locales de logs. |
-| `_local/backups/` | Copias de seguridad previas a cambios de configuración. |
-| `_local/temp/` | Archivos temporales. |
-| `_local/xenia/patches-enabled/` | Copia local habilitada de un parche durante las pruebas. |
-| `ghidra_12.0.4_PUBLIC/` | Dependencia local de Ghidra, excluida de Git. |
+## Compatibilidad
 
-Todo archivo privado, pesado, generado, temporal o procedente del juego debe
-permanecer dentro de `_local/`. La instalación original de Xenia y los archivos
-del juego en `D:\#EMULATORS\XENIA` se consideran fuentes de solo lectura, salvo
-cambios de configuración reversibles precedidos por una copia de seguridad.
+- Emulador: Xenia Canary con soporte de game patches.
+- Title ID: `4D5307D2`.
+- Module Hash: `1A83A0AF5C0EDFE8`.
+- Ejecutable: la versión de `default.xex` correspondiente exactamente a ese
+  Module Hash.
 
-## Documentación
+Otras revisiones del juego no están soportadas por este archivo.
 
-- [Resumen y criterios del proyecto](PROJECT_BRIEF.md)
-- [Referencias oficiales](OFFICIAL_XENIA_REFERENCES.md)
-- [Validación del entorno](docs/environment-report.md)
-- [Hipótesis y candidatos](docs/hypothesis-log.md)
-- [Registro de pruebas](docs/test-log.md)
+## Instalación
 
-## Flujo de trabajo
+1. Cierra Xenia.
+2. Haz una copia de seguridad del parche de Kameo que ya tengas instalado.
+3. Copia `4D5307D2 - Kameo.patch.toml` a la carpeta `patches` de Xenia Canary,
+   sustituyendo el archivo de Kameo existente para evitar entradas duplicadas.
+4. Abre el gestor de parches y activa únicamente una de las dos opciones de
+   framerate con Camera Fix.
+5. Comprueba que los parches están habilitados en la configuración del juego.
 
-1. Consultar la conclusión de `docs/environment-report.md` y resolver cualquier
-   bloqueo antes de iniciar la investigación.
-2. Registrar cada hipótesis antes de probarla.
-3. Conservar bytes, instrucciones y valores originales antes de cualquier cambio.
-4. Probar un solo candidato a la vez con una referencia reproducible a 30 FPS.
-5. Guardar artefactos privados y resultados generados únicamente en `_local/`.
-6. Publicar en `patches/final/` solo un parche validado, ligado al hash exacto y
-   con `is_enabled = false`.
+> **Importante:** activa solo una opción Camera Fix y mantén la otra
+> desactivada. Nunca actives ambas simultáneamente. Mantén `vsync = true`,
+> `apply_patches = true` y usa el `framerate_limit` correspondiente.
 
-No se crean commits ni se hace `push` salvo solicitud expresa.
+## Configuración para 60 FPS
+
+Activa únicamente `60 FPS + Camera Fix`, desactiva `100 FPS + Camera Fix` y
+utiliza:
+
+```toml
+vsync = true
+framerate_limit = 60
+apply_patches = true
+```
+
+No actives simultáneamente la opción de 100 FPS.
+
+## Configuración para 100 FPS
+
+Activa únicamente `100 FPS + Camera Fix`, desactiva `60 FPS + Camera Fix` y
+utiliza:
+
+```toml
+vsync = true
+framerate_limit = 100
+apply_patches = true
+```
+
+No actives simultáneamente la opción de 60 FPS.
+
+No requiere un limitador externo de NVIDIA. El equipo debe ser capaz de
+mantener aproximadamente 100 FPS para obtener el comportamiento previsto.
+
+## Desinstalación
+
+1. Cierra Xenia.
+2. Desactiva las dos entradas Camera Fix.
+3. Elimina el archivo instalado o restaura la copia de seguridad del parche
+   oficial de Kameo.
+
+El parche se aplica en memoria y no modifica `default.xex`, partidas, perfiles
+ni contenido del juego.
+
+## Limitaciones conocidas
+
+- Solo se admite el Module Hash indicado.
+- Cada opción está ajustada para su framerate concreto; no es un parche
+  dinámico ni está diseñado para ejecución uncapped.
+- No deben activarse ambas opciones a la vez.
+- La validación manual inicial resultó estable, pero pueden existir cámaras o
+  situaciones poco comunes que todavía no se hayan probado.
+
+## Créditos
+
+Camera Fix y paquete final: **ISpectre23**.

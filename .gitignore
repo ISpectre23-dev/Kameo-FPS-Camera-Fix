@@ -1,29 +1,45 @@
-# Local, private, generated, or game-derived material.
-/_local/
+# Local development archive
+_local/
 
-# Local tool installations and reverse-engineering databases.
+# Local tools
 /ghidra_*_PUBLIC/
-*.gpr
-*.rep/
-*.gzf
-*.ce
-*.ct
 
-# Game and emulator material must never be committed.
+# Reverse engineering and game files
 *.xex
 *.xexp
 *.iso
 *.zar
-xenia.log
+*.ct
+*.ce
+*.gpr
+*.rep
+*.trace
+*.gzf
 
-# Test captures and recordings.
+# Logs, captures and generated output
+*.log
+*.bak
+*.tmp
+*.dmp
 *.bmp
+*.png
+*.jpg
+*.jpeg
+*.webp
 *.mp4
 *.mkv
 *.webm
 
-# Backups, temporary files, and OS metadata.
-*.bak
-*.tmp
+# Local configurations and backups
+*.local.*
+*.backup
+*.orig
+
+# OS and editor files
 Thumbs.db
 .DS_Store
+.vs/
+.vscode/
+.idea/
+__pycache__/
+*.pyc
