@@ -1,42 +1,40 @@
 # Kameo Camera Fix for Xenia Canary
 
-Corrige el seguimiento automático de la cámara de **Kameo: Elements of
-Power** cuando el juego funciona a 60 o 100 FPS. El archivo contiene
-exclusivamente estas dos opciones, completas y deshabilitadas por defecto:
+Fixes automatic camera following in **Kameo: Elements of Power** when the game
+runs at 60 or 100 FPS. This file contains only these two complete options, both
+disabled by default:
 
 - `60 FPS + Camera Fix`
 - `100 FPS + Camera Fix`
 
-Activa **solo una**. Las dos opciones son mutuamente excluyentes.
+Enable **only one**. The two options are mutually exclusive.
 
-## Compatibilidad
+## Compatibility
 
-- Emulador: Xenia Canary con soporte de game patches.
+- Emulator: Xenia Canary with game patch support.
 - Title ID: `4D5307D2`.
 - Module Hash: `1A83A0AF5C0EDFE8`.
-- Ejecutable: la versión de `default.xex` correspondiente exactamente a ese
-  Module Hash.
+- Executable: the `default.xex` version that exactly matches this Module Hash.
 
-Otras revisiones del juego no están soportadas por este archivo.
+Other game revisions are not supported by this file.
 
-## Instalación
+## Installation
 
-1. Cierra Xenia.
-2. Haz una copia de seguridad del parche de Kameo que ya tengas instalado.
-3. Copia `4D5307D2 - Kameo.patch.toml` a la carpeta `patches` de Xenia Canary,
-   sustituyendo el archivo de Kameo existente para evitar entradas duplicadas.
-4. Abre el gestor de parches y activa únicamente una de las dos opciones de
-   framerate con Camera Fix.
-5. Comprueba que los parches están habilitados en la configuración del juego.
+1. Close Xenia.
+2. Back up any Kameo patch file you already have installed.
+3. Copy `4D5307D2 - Kameo.patch.toml` to the Xenia Canary `patches` folder,
+   replacing the existing Kameo patch file to avoid duplicate entries.
+4. Open the patch manager and enable only one of the two framerate options with
+   Camera Fix.
+5. Make sure patches are enabled in the game configuration.
 
-> **Importante:** activa solo una opción Camera Fix y mantén la otra
-> desactivada. Nunca actives ambas simultáneamente. Mantén `vsync = true`,
-> `apply_patches = true` y usa el `framerate_limit` correspondiente.
+> **Important:** enable only one Camera Fix option and keep the other one
+> disabled. Never enable both simultaneously. Keep `vsync = true` and
+> `apply_patches = true`, and use the matching `framerate_limit` value.
 
-## Configuración para 60 FPS
+## 60 FPS configuration
 
-Activa únicamente `60 FPS + Camera Fix`, desactiva `100 FPS + Camera Fix` y
-utiliza:
+Enable only `60 FPS + Camera Fix`, disable `100 FPS + Camera Fix`, and use:
 
 ```toml
 vsync = true
@@ -44,12 +42,11 @@ framerate_limit = 60
 apply_patches = true
 ```
 
-No actives simultáneamente la opción de 100 FPS.
+Never enable the 100 FPS option at the same time.
 
-## Configuración para 100 FPS
+## 100 FPS configuration
 
-Activa únicamente `100 FPS + Camera Fix`, desactiva `60 FPS + Camera Fix` y
-utiliza:
+Enable only `100 FPS + Camera Fix`, disable `60 FPS + Camera Fix`, and use:
 
 ```toml
 vsync = true
@@ -57,30 +54,30 @@ framerate_limit = 100
 apply_patches = true
 ```
 
-No actives simultáneamente la opción de 60 FPS.
+Never enable the 60 FPS option at the same time.
 
-No requiere un limitador externo de NVIDIA. El equipo debe ser capaz de
-mantener aproximadamente 100 FPS para obtener el comportamiento previsto.
+No external NVIDIA limiter is required. The system must be able to maintain
+approximately 100 FPS to achieve the intended behavior.
 
-## Desinstalación
+## Uninstallation
 
-1. Cierra Xenia.
-2. Desactiva las dos entradas Camera Fix.
-3. Elimina el archivo instalado o restaura la copia de seguridad del parche
-   oficial de Kameo.
+1. Close Xenia.
+2. Disable both Camera Fix entries.
+3. Remove the installed file or restore your backup of the official Kameo
+   patch file.
 
-El parche se aplica en memoria y no modifica `default.xex`, partidas, perfiles
-ni contenido del juego.
+The patch is applied in memory and does not modify `default.xex`, save data,
+profiles, or game content.
 
-## Limitaciones conocidas
+## Known limitations
 
-- Solo se admite el Module Hash indicado.
-- Cada opción está ajustada para su framerate concreto; no es un parche
-  dinámico ni está diseñado para ejecución uncapped.
-- No deben activarse ambas opciones a la vez.
-- La validación manual inicial resultó estable, pero pueden existir cámaras o
-  situaciones poco comunes que todavía no se hayan probado.
+- Only the specified Module Hash is supported.
+- Each option is tuned for its specific framerate; this is not a dynamic patch
+  and is not designed for uncapped operation.
+- Never enable both options at the same time.
+- Initial manual validation was stable, but uncommon cameras or situations may
+  not have been tested yet.
 
-## Créditos
+## Credits
 
-Camera Fix y paquete final: **ISpectre23**.
+Camera Fix and final package: **ISpectre23**.
