@@ -23,6 +23,8 @@ Other game revisions are not supported by this file.
 
 ## Installation
 
+### Manual installation
+
 1. Close Xenia.
 2. Back up any Kameo patch file you already have installed.
 3. Copy `4D5307D2 - Kameo Elements of Power.patch.toml` to the Xenia Canary
@@ -35,6 +37,23 @@ Other game revisions are not supported by this file.
 > **Important:** enable only one Camera Fix option and keep the other one
 > disabled. Never enable both simultaneously. Keep `vsync = true` and
 > `apply_patches = true`, and use the matching `framerate_limit` value.
+
+### Xenia Manager
+
+Xenia Manager currently has an issue when importing this patch as a local
+patch: it may create an empty extensionless file, causing the patch entries to
+appear in the interface without being applied in-game.
+
+To install it through Xenia Manager:
+
+1. Download Kameo's official patch through Xenia Manager.
+2. Locate the generated `4D5307D2 - Kameo.patch.toml` file in Xenia Canary's
+   `patches` folder.
+3. Replace the contents of that file with the contents of this repository's
+   patch file. Keep the filename exactly as `4D5307D2 - Kameo.patch.toml`,
+   since this is the shortened filename expected by Xenia Manager.
+4. Enable either `60 FPS + Camera Fix` or `100 FPS + Camera Fix`, but never
+   enable both options at the same time.
 
 ## 60 FPS configuration
 
