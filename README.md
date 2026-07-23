@@ -34,54 +34,105 @@ Module Hash in `xenia.log` after launching the game.
 
 ## Installation
 
+### Step 1: identify the correct patch file
+
+Do this before copying or editing any patch file:
+
+1. Disable or remove any currently installed Kameo patch.
+2. Launch the game revision you want to use once, then close Xenia Canary.
+3. Open the latest `xenia.log` and search for `Module Hash:`.
+4. Use the exact match below:
+
+   | Module Hash | File to use |
+   |---|---|
+   | `1A83A0AF5C0EDFE8` | `4D5307D2 - Kameo Elements of Power.patch.toml` |
+   | `B94D3AB68548DF97` | `4D5307D2 - Kameo Elements of Power (TU2).patch.toml` |
+
+5. If your Module Hash does not match either value exactly, stop. Neither patch
+   file is confirmed to support that game revision.
+
+> **TU2 users:** the TU2 file works only while Title Update 2 is installed and
+> active.
+
+### Step 2: choose one installation method
+
+Use either **Manual installation** or **Xenia Manager**. Do not install the
+patch through both methods at the same time.
+
 ### Manual installation
 
-1. Launch the intended game revision once with any Kameo patches disabled,
-   then close Xenia Canary.
-2. Check the active Module Hash in the latest `xenia.log`.
-3. Select the matching base-game or TU2 patch file from the compatibility table.
-4. Back up and remove any other Kameo patch files from Xenia Canary's `patches`
-   folder to prevent duplicate entries or conflicting enabled states.
-5. Copy only the matching patch file to the `patches` folder.
-6. Open the copied `.patch.toml` file in a text editor.
-7. Set `is_enabled = true` for either `60 FPS + Camera Fix` or
-   `100 FPS + Camera Fix`.
-8. Keep the other FPS option set to `false`. Never enable both simultaneously.
-9. In Kameo's configuration, keep `apply_patches = true` and `vsync = true`,
-   then set `framerate_limit = 60` or `framerate_limit = 100` to match the
-   enabled option.
-10. Launch the game and confirm that `[Patches Applied]` appears in Xenia
-    Canary's title bar.
+1. Close Xenia Canary.
+2. Open Xenia Canary's `patches` folder.
+3. Back up and remove every existing Kameo patch file from that folder. After
+   installation, only one Kameo patch file should be present.
+4. Copy the file selected in Step 1 into the `patches` folder.
+5. Open the copied `.patch.toml` file in a text editor.
+6. Choose one FPS option:
+   - For 60 FPS, set `is_enabled = true` under `60 FPS + Camera Fix` and keep
+     `100 FPS + Camera Fix` set to `false`.
+   - For 100 FPS, set `is_enabled = true` under `100 FPS + Camera Fix` and keep
+     `60 FPS + Camera Fix` set to `false`.
+7. Optionally enable `Aspect Ratio`. It is independent and may be used with
+   either FPS option.
+8. In Kameo's Xenia configuration, use the settings matching your selected
+   option:
 
-> **Important:** only one FPS option may be enabled at a time. The
-> `Aspect Ratio` patch is independent and may be enabled alongside either FPS
-> option.
+   **60 FPS**
+   ```toml
+   vsync = true
+   framerate_limit = 60
+   apply_patches = true
+   ```
+
+   **100 FPS**
+   ```toml
+   vsync = true
+   framerate_limit = 100
+   apply_patches = true
+   ```
+
+9. Launch the game.
+10. Confirm that `[Patches Applied]` appears in Xenia Canary's title bar.
+
+If `[Patches Applied]` does not appear, close Xenia and check all four items:
+
+- the installed patch file matches the active Module Hash;
+- only one Kameo patch file is present;
+- exactly one FPS option has `is_enabled = true`;
+- `apply_patches = true` is set in Kameo's Xenia configuration.
 
 ### Xenia Manager
 
-To install the appropriate revision through Xenia Manager:
+Do **not** import either repository file with Xenia Manager's local-patch
+importer. In the tested version, `Xenia Manager v4.2.2`, this may create an
+empty extensionless file while still showing patch entries in the interface.
 
-1. Download Kameo's official patch through Xenia Manager.
-2. Locate the generated `4D5307D2 - Kameo.patch.toml` file in Xenia Canary's
-   `patches` folder.
-3. If the active Module Hash is not already known, launch the intended revision
-   once and check the latest `xenia.log`.
-4. Replace only the contents of the generated file with the contents of the
-   matching repository file:
-   - use `4D5307D2 - Kameo Elements of Power.patch.toml` for
-     `1A83A0AF5C0EDFE8`;
-   - use `4D5307D2 - Kameo Elements of Power (TU2).patch.toml` for
-     `B94D3AB68548DF97`.
-5. Keep the generated filename exactly as `4D5307D2 - Kameo.patch.toml`.
-6. Enable either `60 FPS + Camera Fix` or `100 FPS + Camera Fix`, but never
-   enable both options at the same time.
+Use this workaround instead:
 
-Do not combine the contents of both repository files or keep both revisions
-installed simultaneously through Xenia Manager.
+1. Close Xenia Canary.
+2. In Xenia Manager, download Kameo's official patch.
+3. Locate the generated file in Xenia Canary's `patches` folder:
 
-> In the tested version of `Xenia Manager v4.2.2`, importing either repository
-> file as a local patch may create an empty extensionless file. The patch entries
-> can then appear in the interface without being applied in-game.
+   `4D5307D2 - Kameo.patch.toml`
+
+4. Open both of these files in a text editor:
+   - the repository file selected in Step 1;
+   - the generated `4D5307D2 - Kameo.patch.toml` file.
+5. Copy the entire contents of the repository file.
+6. Replace the entire contents of the generated file and save it.
+7. Keep its filename exactly as:
+
+   `4D5307D2 - Kameo.patch.toml`
+
+8. In Xenia Manager, enable either `60 FPS + Camera Fix` or
+   `100 FPS + Camera Fix`. Never enable both.
+9. Set Kameo's Xenia configuration to match the selected FPS option, using the
+    configuration values shown below.
+10. Launch the game and confirm that `[Patches Applied]` appears in Xenia
+    Canary's title bar.
+
+Do not combine the contents of the base-game and TU2 files. Use only the file
+matching the active Module Hash.
 
 ## 60 FPS configuration
 
