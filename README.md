@@ -59,10 +59,6 @@ Module Hash in `xenia.log` after launching the game.
 
 ### Xenia Manager
 
-> In the tested version of `Xenia Manager v4.2.2`, importing either repository
-> file as a local patch may create an empty extensionless file. The patch entries
-> can then appear in the interface without being applied in-game.
-
 To install the appropriate revision through Xenia Manager:
 
 1. Download Kameo's official patch through Xenia Manager.
@@ -82,6 +78,10 @@ To install the appropriate revision through Xenia Manager:
 
 Do not combine the contents of both repository files or keep both revisions
 installed simultaneously through Xenia Manager.
+
+> In the tested version of `Xenia Manager v4.2.2`, importing either repository
+> file as a local patch may create an empty extensionless file. The patch entries
+> can then appear in the interface without being applied in-game.
 
 ## 60 FPS configuration
 
