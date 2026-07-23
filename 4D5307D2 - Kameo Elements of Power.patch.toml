@@ -8,6 +8,7 @@ hash = "1A83A0AF5C0EDFE8" # default.xex
     desc = "Enables 60 FPS and fixes automatic camera following. Do not enable with 100 FPS + Camera Fix. Requires vsync = true and framerate_limit = 60."
     author = "Margen67, ISpectre23"
     is_enabled = false
+
     [[patch.be8]]
         address = 0x820cf93f
         value = 0x01
@@ -26,6 +27,7 @@ hash = "1A83A0AF5C0EDFE8" # default.xex
     desc = "Enables 100 FPS and fixes automatic camera following. Do not enable with 60 FPS + Camera Fix. Requires vsync = true and framerate_limit = 100."
     author = "Margen67, ISpectre23"
     is_enabled = false
+
     [[patch.be8]]
         address = 0x820cf93f
         value = 0x01
