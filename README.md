@@ -59,9 +59,9 @@ Module Hash in `xenia.log` after launching the game.
 
 ### Xenia Manager
 
-In the tested version of `Xenia Manager v4.2.2`, importing either repository
-file as a local patch may create an empty extensionless file. The patch entries
-can then appear in the interface without being applied in-game.
+> In the tested version of `Xenia Manager v4.2.2`, importing either repository
+> file as a local patch may create an empty extensionless file. The patch entries
+> can then appear in the interface without being applied in-game.
 
 To install the appropriate revision through Xenia Manager:
 
