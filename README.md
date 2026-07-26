@@ -1,21 +1,27 @@
 # Kameo FPS Camera Fix for Xenia Canary
 
-Fixes automatic camera following in **Kameo: Elements of Power** at 60 and 100
-FPS for the supported base-game revision and Title Update 2. Two patch files are
-available:
+Fixes automatic camera following in **Kameo: Elements of Power** at higher,
+variable and uncapped framerates for the supported base-game revision and Title
+Update 2.
+
+Two patch files are available:
 
 - Base game: `4D5307D2 - Kameo Elements of Power.patch.toml`
 - Title Update 2: `4D5307D2 - Kameo Elements of Power (TU2).patch.toml`
 
 Each file contains these three options, all disabled by default:
 
-- `60 FPS + Camera Fix`
-- `100 FPS + Camera Fix`
+- `60 FPS`
+- `FPS Camera Fix`
 - `Aspect Ratio`
 
-Enable **only one FPS option**. The 60 and 100 FPS options are mutually
-exclusive and must never be enabled simultaneously. The official `Aspect
-Ratio` patch is independent of the FPS choice.
+The `60 FPS` and `FPS Camera Fix` patches are independent:
+
+- `60 FPS` changes the game's presentation interval and is used for 60 FPS or
+  higher fixed framerates with Xenia VSync enabled.
+- `FPS Camera Fix` corrects automatic camera following at framerates above
+  30 FPS, including fixed, variable and uncapped operation.
+- `Aspect Ratio` is independent of both FPS-related patches.
 
 ## Compatibility
 
@@ -26,8 +32,10 @@ Ratio` patch is independent of the FPS choice.
 
 Use only the patch file matching the active Module Hash. Title Update 2 must be
 installed and active to use the TU2 file. Only the two Module Hashes listed
-above are supported. Other disc revisions may also be compatible if they
-produce one of those exact hashes; any other Module Hash is unsupported.
+above are supported.
+
+Other disc revisions may also be compatible if they produce one of those exact
+hashes; any other Module Hash is unsupported.
 
 The listed Media ID identifies the tested edition. You can find the active
 Module Hash in `xenia.log` after launching the game.
@@ -67,38 +75,26 @@ patch through both methods at the same time.
    installation, only one Kameo patch file should be present.
 4. Copy the file selected in Step 1 into the `patches` folder.
 5. Open the copied `.patch.toml` file in a text editor.
-6. Choose one FPS option:
-   - For 60 FPS, set `is_enabled = true` under `60 FPS + Camera Fix` and keep
-     `100 FPS + Camera Fix` set to `false`.
-   - For 100 FPS, set `is_enabled = true` under `100 FPS + Camera Fix` and keep
-     `60 FPS + Camera Fix` set to `false`.
-7. Optionally enable `Aspect Ratio`. It is independent and may be used with
-   either FPS option.
-8. In Kameo's Xenia configuration, use the settings matching your selected
-   option:
+6. Enable the patches required by your intended configuration:
 
-   **60 FPS**
-   ```toml
-   vsync = true
-   framerate_limit = 60
-   apply_patches = true
-   ```
+   - **Original 30 FPS:** no FPS-related patch is required.
+   - **60 FPS:** enable `60 FPS` and `FPS Camera Fix`.
+   - **Higher fixed framerate with VSync enabled:** enable `60 FPS` and
+     `FPS Camera Fix`, then set the desired `framerate_limit`.
+   - **Uncapped or variable framerate with VSync disabled:** enable only
+     `FPS Camera Fix`.
 
-   **100 FPS**
-   ```toml
-   vsync = true
-   framerate_limit = 100
-   apply_patches = true
-   ```
-
+7. Optionally enable `Aspect Ratio`. It is independent of both FPS-related
+   patches.
+8. Set `apply_patches = true` in Kameo's Xenia configuration.
 9. Launch the game.
 10. Confirm that `[Patches Applied]` appears in Xenia Canary's title bar.
 
-If `[Patches Applied]` does not appear, close Xenia and check all four items:
+If `[Patches Applied]` does not appear, close Xenia and check:
 
 - the installed patch file matches the active Module Hash;
 - only one Kameo patch file is present;
-- exactly one FPS option has `is_enabled = true`;
+- the intended patch entries have `is_enabled = true`;
 - `apply_patches = true` is set in Kameo's Xenia configuration.
 
 ### Xenia Manager
@@ -124,31 +120,53 @@ Use this workaround instead:
 
    `4D5307D2 - Kameo.patch.toml`
 
-8. In Xenia Manager, enable either `60 FPS + Camera Fix` or
-   `100 FPS + Camera Fix`. Never enable both.
-9. Set Kameo's Xenia configuration to match the selected FPS option, using the
-    configuration values shown below.
+8. In Xenia Manager, enable the patches required by your intended configuration.
+9. Set Kameo's Xenia configuration using one of the examples below.
 10. Launch the game and confirm that `[Patches Applied]` appears in Xenia
     Canary's title bar.
 
 Do not combine the contents of the base-game and TU2 files. Use only the file
 matching the active Module Hash.
 
-## 60 FPS configuration
+## Configuration examples
 
-This configuration is shared by the base-game and TU2 patch files. Enable only
-`60 FPS + Camera Fix`, disable `100 FPS + Camera Fix`, and use:
+### Original 30 FPS
+
+No FPS-related patch is required.
 
 ```toml
 vsync = true
-framerate_limit = 60
+framerate_limit = 0
 apply_patches = true
 ```
 
-## 100 FPS configuration
+`FPS Camera Fix` may remain disabled at the original 30 FPS.
 
-This configuration is shared by the base-game and TU2 patch files. Enable only
-`100 FPS + Camera Fix`, disable `60 FPS + Camera Fix`, and use:
+### 60 FPS
+
+Enable:
+
+- `60 FPS`
+- `FPS Camera Fix`
+
+Use:
+
+```toml
+vsync = true
+framerate_limit = 0
+apply_patches = true
+```
+
+With this configuration, the `60 FPS` patch runs the game at 60 FPS.
+
+### Higher fixed framerate
+
+Enable:
+
+- `60 FPS`
+- `FPS Camera Fix`
+
+Set the desired limit, for example:
 
 ```toml
 vsync = true
@@ -156,38 +174,53 @@ framerate_limit = 100
 apply_patches = true
 ```
 
-No external limiter is required. The system must be able to maintain
-approximately 100 FPS to achieve the intended behavior.
+The same structure may be used for other supported limits. Actual framerate
+accuracy depends on Xenia Canary's limiter, the selected settings and system
+performance.
+
+### Uncapped or variable framerate
+
+Enable only:
+
+- `FPS Camera Fix`
+
+Use:
+
+```toml
+vsync = false
+framerate_limit = 0
+apply_patches = true
+```
+
+In this configuration, the `60 FPS` patch is unnecessary because disabling
+Xenia VSync already allows the game to run uncapped.
+
+An external limiter may still be used if desired.
 
 ## Aspect Ratio configuration
 
-The official `Aspect Ratio` patch is independent of the FPS options. It
-requires the aspect-ratio configuration specified by Xenia for aspect-ratio
+The official `Aspect Ratio` patch is independent of both FPS-related patches.
+It requires the aspect-ratio configuration specified by Xenia for aspect-ratio
 patches; follow the note in the Xenia game-patches README before enabling it.
 
 ## Uninstallation
 
 1. Close Xenia Canary.
-2. Disable both Camera Fix entries.
+2. Disable `60 FPS`, `FPS Camera Fix` and `Aspect Ratio`.
 3. Remove the patch file corresponding to the revision you used, or restore
    your backup of the official Kameo patch file.
 
 The patches are applied in memory and do not modify `default.xex`, save data,
-profiles, or game content.
+profiles or game content.
 
 ## Known limitations
 
 - Only Module Hashes `1A83A0AF5C0EDFE8` and `B94D3AB68548DF97` are supported.
-- Each option is tuned for its specific framerate; uncapped operation is not
-  supported.
-- Never enable the 60 and 100 FPS options simultaneously.
-- Both FPS options passed initial manual validation on the supported base-game
-  revision and Title Update 2.
-- Uncommon scripted cameras, areas, or situations may not have been tested yet.
+- A complete playthrough has not yet been performed.
+- Uncommon scripted cameras, areas or situations may not have been tested yet.
 
 ## Credits
 
 - Base-game FPS unlock and Aspect Ratio patch: **Margen67**
 - TU2 FPS unlock and Aspect Ratio patch: **Margen67, ICUP321**
-- Camera fixes and 100 FPS implementations for the base game and TU2:
-  **ISpectre23**
+- Base-game and TU2 FPS Camera Fix: **ISpectre23**
